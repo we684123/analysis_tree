@@ -114,6 +114,7 @@ else:
 			f.close()
 			Default_settree = json.loads(t)
 			print("讀取 " + str(gSFE[0][int(ans)-1]) +" 完成!")
+			#終於讀到了QWQ，接下來進入處理資料的部分
 		except Exception as e:
 			print("	elif type(ans) == 'int': ERROR")
 			print(e)
