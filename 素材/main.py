@@ -1,29 +1,33 @@
 import json
-ans = input('是否引入預設檔?(Y/N)\nimport Default.settree?')
-if ans == 'y'or ans =='Y':
-	try:
-		f = open('Default.settree','r+',encoding = 'utf8')
-		t = f.read()
-		f.close()
-		Default_settree = json.loads(t)
-		print("讀取 Default.settree 完成!")
-	except Exception as e:
-		print('預設檔遺失')
-		print('Default.settree is miss')
-		print('是否建立新設定檔?(Y/N)\n"N"則離開\n')
-		print('creat a new Default.settree?(Y/N)\n"N" is exit')
-		ans2 = input()
-		if ans2 == ('y'or'Y'):
-			creat_default()
-		else:
-			e = input("無此選項，請按任一鍵離開")
-			exit
-elif ans == 'n'or ans =='N':
-	print("請創立新設定檔! 030...")
-	creat_default()
-else:
-	e = input("無此選項，請按任一鍵離開")
-	exit
+main()
+#------------------------------------------------------------------------------
+def main():
+	ans = input('是否引入預設檔?(Y/N)\nimport Default.settree?')
+	if ans == 'y'or ans =='Y':
+		try:
+			f = open('Default.settree','r+',encoding = 'utf8')
+			t = f.read()
+			f.close()
+			Default_settree = json.loads(t)
+			print("讀取 Default.settree 完成!")
+		except Exception as e:
+			print('預設檔遺失')
+			print('Default.settree is miss')
+			print('是否建立新設定檔?(Y/N)\n"N"則離開\n')
+			print('creat a new Default.settree?(Y/N)\n"N" is exit')
+			ans2 = input()
+			if ans2 == ('y'or'Y'):
+				creat_default()
+			else:
+				e = input("無此選項，請按任一鍵離開")
+				exit
+	elif ans == 'n'or ans =='N':
+		print("請創立新設定檔! 030...")
+		creat_default()
+	else:
+		e = input("無此選項，請按任一鍵離開")
+		exit
+	pass
 #------------------------------------------------------------------------------
 def creat_default():
 	print("定義分離字元")
@@ -93,10 +97,10 @@ def creat_default():
 			print("請輸入正則式")
 			re = input("input re")
 			e = set_image_REformat(image_id,re)
+			if e != '改寫成功':
+				print('輸入錯誤 請查明後再撥')
 			print(e)
-		print("設定檔建立完成!")
-		print("Default.settree is Created!")
-	#rectangle = input("矩形(rectangle)對應正則(re)")
+		print("設定檔建立完成! Default.settree is Created!")
 #------------------------------------------------------------------------------
 def set_image_REformat(image_id,re):
 	f = open('Default.settree','r+',encoding = 'utf8')
@@ -104,7 +108,15 @@ def set_image_REformat(image_id,re):
 	f.close()
 	Default_settree = json.loads(t)
 	try:
+		k = Default_settree['image_mod'][image_id]
 		Default_settree['image_mod'][image_id] = str(re)
+		f = open('Default.settree','w+',encoding = 'utf8')
+		i = f.write(json.dumps(Default_settree))
+		f.close()
+		print("before re:")
+		print(k)
+		print("after re:")
+		print(Default_settree['image_mod'][image_id])
 		return("改寫成功")
 	except Exception as e:
 		return e

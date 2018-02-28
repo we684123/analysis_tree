@@ -63,7 +63,22 @@ Default_settree = json.loads(t)
 t
 Default_settree['image_mod']['flowchart.userMessage']
 image_id = 'flowchart.userMessage'
-Default_settree['image_mod'][image_id] = str(re)
+Default_settree['image_mod']['image_id2'] = str(re)
 re = '#'
 str(re)
 #------------------------------------------------------------------------------
+ans = input('是否引入預設檔?(Y/N)\nimport Default.settree?')
+if ans == 'y'or ans =='Y':
+	print("!!!")
+else:
+	e = input("無此選項，請按任一鍵離開")
+	exit
+
+
+
+
+
+
+
+
+#1
