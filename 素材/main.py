@@ -1,8 +1,12 @@
 import json
 ans = input('是否引入預設檔?(Y/N)\nimport Default.settree?')
-if ans == ('y'or'Y'):
+if ans == 'y'or ans =='Y':
 	try:
-		import 'Default.settree'
+		f = open('Default.settree','r+',encoding = 'utf8')
+		t = f.read()
+		f.close()
+		Default_settree = json.loads(t)
+		print("讀取 Default.settree 完成!")
 	except Exception as e:
 		print('預設檔遺失')
 		print('Default.settree is miss')
@@ -14,7 +18,7 @@ if ans == ('y'or'Y'):
 		else:
 			e = input("無此選項，請按任一鍵離開")
 			exit
-elif ans == ('n' or 'N'):
+elif ans == 'n'or ans =='N':
 	print("請創立新設定檔! 030...")
 	creat_default()
 else:

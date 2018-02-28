@@ -61,4 +61,9 @@ j = json.loads(t)
 j
 Default_settree = json.loads(t)
 t
-Default_settree['image_mod']
+Default_settree['image_mod']['flowchart.userMessage']
+image_id = 'flowchart.userMessage'
+Default_settree['image_mod'][image_id] = str(re)
+re = '#'
+str(re)
+#------------------------------------------------------------------------------
