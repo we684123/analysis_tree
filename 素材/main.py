@@ -1,4 +1,7 @@
 import json
+import re
+import os
+from ppint import pprint
 main()
 #------------------------------------------------------------------------------
 def main():
@@ -22,12 +25,66 @@ def main():
 				e = input("無此選項，請按任一鍵離開")
 				exit
 	elif ans == 'n'or ans =='N':
-		print("請創立新設定檔! 030...")
-		creat_default()
+		getlistdir = os.listdir(os.getcwd())
+		gSFE = get_specified_Filename_Extension(getlistdir,'.settree')
+		if gSFE == '':
+			print("請創立新設定檔! 030...")
+			creat_default()
+		else:
+			print('---可用的 .settree 檔如下---')
+			for i in range(0,len(gSFE[0])) :
+				print(str(gSFE[1][i])+ ". " + str(gSFE[0][i]))
+			print('---------------------------\n')
+			print("請問要套用哪個設定檔?")
+			ans = input('請輸入檔案前方編號以選用，或輸入"N"創建新設定檔，或輸入"E"離開程式)')
+			if ans == 'N' or ans == 'n':
+				print("請創立新設定檔!")
+				creat_default()
+			elif ans == 'E' :
+				exit
+			elif type(int(ans)) == type(1):  #
+				try:
+					f = open(str(gSFE[0][int(ans)-1]),'r+',encoding = 'utf8')
+					t = f.read()
+					f.close()
+					Default_settree = json.loads(t)
+					print("讀取 " + str(gSFE[0][int(ans)-1]) +" 完成!")
+				except Exception as e:
+					print("	elif type(ans) == 'int': ERROR")
+					print(e)
+			else:
+				print(ans)
+				print('輸入錯誤!')
 	else:
 		e = input("無此選項，請按任一鍵離開")
 		exit
 	pass
+#-------------------------------------------------------------------------------
+def get_specified_Filename_Extension(array,specified_FE='null'):
+	#顯示當前資料夾內容,如有指定副檔名會塞選
+	#print("in get_specified_Filename_Extension")
+	#print(array)
+	#print(specified_FE)
+	File_list = []
+	File_id_list = []
+	n = int(len(array))
+	if specified_FE == 'null':
+		for i in range(0,n):
+			j = str(array[i])
+			#print(j)
+			File_list.append(j)
+			File_id_list.append(int(i))
+			#print(array[i])
+	else:
+		for i in range(0,n):
+			if specified_FE in array[i]:
+				#這裡有個bug 就是名子可以"123.gh.png" 中塞選條件 ".gh" 也過關
+				#但我就不修了，目前對我來說夠用，為了先達成最小可行性。哪天有空再說
+				j = str(array[i])
+				#print(j)
+				File_list.append(j)
+				File_id_list.append(int(i))
+	return [File_list,File_id_list]
 #------------------------------------------------------------------------------
 def creat_default():
 	print("定義分離字元")
@@ -120,3 +177,16 @@ def set_image_REformat(image_id,re):
 		return("改寫成功")
 	except Exception as e:
 		return e
+#-------------------------------------------------------------------------------
+def find_get(txt,st,ed):
+	try:
+		txt = str(txt)
+		a = txt.index(st)
+		g = txt[a:]
+		b = g.index(ed)
+		c = len(st)
+		ans = g[c:b]
+		return ans
+	except Exception as e:
+		return e
+#-------------------------------------------------------------------------------

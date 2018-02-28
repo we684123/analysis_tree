@@ -73,12 +73,50 @@ if ans == 'y'or ans =='Y':
 else:
 	e = input("無此選項，請按任一鍵離開")
 	exit
+#-------------------------------------------------------------------------------
+import os
+
+
+getlistdir = os.listdir(os.getcwd())
+os.getcwd()
+type(getcwd)
+#3333333
+get_specified_Filename_Extension(getlistdir)
+get_specified_Filename_Extension(getlistdir,'.settree')
+yy = get_specified_Filename_Extension(getlistdir,'.settree')
+yy
 
 
 
-
-
-
-
-
-#1
+gSFE[0][0]
+gSFE[1]
+#-------------------------------------------------------------------------------
+gSFE = get_specified_Filename_Extension(getlistdir,'.settree')
+if gSFE == '':
+	print("請創立新設定檔! 030...")
+	creat_default()
+else:
+	print('---可用的 .settree 檔如下---')
+	for i in range(0,len(gSFE[0])) :
+		print(str(gSFE[1][i])+ ". " + str(gSFE[0][i]))
+	print('---------------------------\n')
+	print("請問要套用哪個設定檔?")
+	ans = input('請輸入檔案前方編號以選用，或輸入"N"創建新設定檔，或輸入"E"離開程式)')
+	if ans == 'N' or ans == 'n':
+		print("請創立新設定檔!")
+		creat_default()
+	elif ans == 'E' :
+		exit
+	elif type(int(ans)) == type(1):  #
+		try:
+			f = open(str(gSFE[0][int(ans)-1]),'r+',encoding = 'utf8')
+			t = f.read()
+			f.close()
+			Default_settree = json.loads(t)
+			print("讀取 " + str(gSFE[0][int(ans)-1]) +" 完成!")
+		except Exception as e:
+			print("	elif type(ans) == 'int': ERROR")
+			print(e)
+	else:
+		print(ans)
+		print('輸入錯誤!')
