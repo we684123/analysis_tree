@@ -14,11 +14,42 @@ Default_settree = {
 		'argument_area':argument_area,
 		'argument_slice_chat':argument_slice_chat
 	},
-	'iagme_mod':{}
+	'image_mod':{
+		'flowchart.start1':'null',
+		'flowchart.start2':'null',
+		'flowchart.terminator':'null',
+		'flowchart.process':'null',
+		'flowchart.predefinedProcess':'null',
+		'flowchart.decision':'null',
+		'flowchart.loopLimit':'null',
+		'flowchart.loopLimitEnd':'null',
+		'flowchart.document':'null',
+		'flowchart.data':'null',
+		'flowchart.directData':'null',
+		'flowchart.storedData':'null',
+		'flowchart.sequentialData':'null',
+		'flowchart.dataBase':'null',
+		'flowchart.internalStorage':'null',
+		'flowchart.manualInput':'null',
+		'flowchart.card':'null',
+		'flowchart.paperType':'null',
+		'flowchart.cloud':'null',
+		'flowchart.delay':'null',
+		'flowchart.display':'null',
+		'flowchart.manualOperation':'null',
+		'flowchart.preparation':'null',
+		'flowchart.onPageReference':'null',
+		'flowchart.offPageReference':'null',
+		'flowchart.userMessage':'null',
+		'flowchart.networkMessage':'null',
+		'flowchart.annotation':'null'
+	}
 }
 f = open('Default.settree','w')
 i = f.write(json.dumps(Default_settree))
 i
+
+f.close()
 #------------------------------------------------------------------------------
 f = open('Default.settree','r+',encoding = 'utf8')
 t = f.read()
@@ -30,4 +61,4 @@ j = json.loads(t)
 j
 Default_settree = json.loads(t)
 t
-Default_settree['']
+Default_settree['image_mod']

@@ -31,19 +31,51 @@ def creat_default():
 	print("定義引數分離字元")
 	argument_slice_chat = input("set argument slice chat")
 	Default_settree = {
-		'slice_chat':slice_chat,
-		'label_format':label_format,
-		'argument_area':argument_area,
-		'argument_slice_chat':argument_slice_chat
+		'analysis_mod':{
+			'slice_chat':slice_chat,
+			'label_format':label_format,
+			'argument_area':argument_area,
+			'argument_slice_chat':argument_slice_chat
+		},
+		'image_mod':{
+			'flowchart.start1':'null',
+			'flowchart.start2':'null',
+			'flowchart.terminator':'null',
+			'flowchart.process':'null',
+			'flowchart.predefinedProcess':'null',
+			'flowchart.decision':'null',
+			'flowchart.loopLimit':'null',
+			'flowchart.loopLimitEnd':'null',
+			'flowchart.document':'null',
+			'flowchart.data':'null',
+			'flowchart.directData':'null',
+			'flowchart.storedData':'null',
+			'flowchart.sequentialData':'null',
+			'flowchart.dataBase':'null',
+			'flowchart.internalStorage':'null',
+			'flowchart.manualInput':'null',
+			'flowchart.card':'null',
+			'flowchart.paperType':'null',
+			'flowchart.cloud':'null',
+			'flowchart.delay':'null',
+			'flowchart.display':'null',
+			'flowchart.manualOperation':'null',
+			'flowchart.preparation':'null',
+			'flowchart.onPageReference':'null',
+			'flowchart.offPageReference':'null',
+			'flowchart.userMessage':'null',
+			'flowchart.networkMessage':'null',
+			'flowchart.annotation':'null'
+		}
 	}
 	f = open('Default.settree','w')
 	i = f.write(json.dumps(Default_settree))
 	if i == 0 :
-		print("opss... 資料沒有寫入，請關掉程式後檢查bug")
+		print("opss... analysis_mod資料沒有寫入，請關掉程式後檢查bug")
 	else:
 		print("====================")
-		print("定義圖示設定，預設皆'null'(不匹配)，請看圖後輸入圖示編號和正則式")
-		print("set image format,Default all is 'null',plz look '流程圖.png' ")
+		print("定義圖示設定(image_mod)，預設皆'null'(不匹配)，請看圖後輸入圖示編號和正則式")
+		print("set image format(image_mod),Default all is 'null',plz look '流程圖.png' ")
 		print("after that, input image id and key in Regular Expression")
 		print("-----")
 		while 1:
