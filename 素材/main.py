@@ -68,7 +68,7 @@ def creat_default():
 			'flowchart.annotation':'null'
 		}
 	}
-	f = open('Default.settree','w')
+	f = open('Default.settree','w+',encoding = 'utf8')
 	i = f.write(json.dumps(Default_settree))
 	if i == 0 :
 		print("opss... analysis_mod資料沒有寫入，請關掉程式後檢查bug")

@@ -45,7 +45,7 @@ Default_settree = {
 		'flowchart.annotation':'null'
 	}
 }
-f = open('Default.settree','w')
+f = open('Default.settree','w+',encoding = 'utf8')
 i = f.write(json.dumps(Default_settree))
 i
 
